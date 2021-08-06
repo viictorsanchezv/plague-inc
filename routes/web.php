@@ -18,3 +18,6 @@ Route::view('/', 'auth.login');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+Route::get('/partida','App\Http\Controllers\PartidaController@index')->name('partida');
