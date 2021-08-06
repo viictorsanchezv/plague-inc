@@ -15,6 +15,7 @@
             </div>
         </div>
 
+        <!-- Operaciones -->
         <div x-data="isDialogOpen()" @toggle-modal.window="modal = !modal" >
             <!-- overlay -->
             <div class="overflow-auto" style="background-color: rgba(0, 0, 0, 0.75);display:none" x-show="isOpen()" :class="{ 'user-history-modal': isOpen() }" >
@@ -49,14 +50,133 @@
                                 </li>
                             </ul>
                             <div class="w-full pt-4">
-                                <div x-show="openTab === 1">Tab #1</div>
-                                <div x-show="openTab === 2">Tab #2</div>
-                                <div x-show="openTab === 3">Tab #3</div>
-                                <div x-show="openTab === 4">Tab #4</div>
+                                <div x-show="openTab === 1">
+                                    <div class='flex items-center'>
+                                        <div class='w-3/5'>
+                                            <img  src="{{ URL::asset('img/resumen.gif') }}" alt="this slowpoke moves" class='mx-auto' />
+                                        </div>
+                                        <div class='w-1/5'>
+                                            <div class='p-2'>
+                                                <h1 class='w-full text-center text-yellow-900'>Hopeful Dawn</h1>
+                                                <div class='bg-yellow-100 p-3'>
+                                                    <p class='text-yellow-900'>Mision: Estabiliza la región</p>
+                                                    <p class='text-yellow-900'>Duración: 55 mes(s)</p>
+                                                    <p class='text-yellow-900'>Gobernador: Sirviente Civil</p>
+                                                    <p class='text-yellow-900'>Presupuesto Anual: 30$</p>
+                                                    <p class='text-yellow-900'>Dificulta: Casual</p>
+                                                </div>
+                                            </div>
+                                            <div class='p-2'>
+                                                <h1 class='w-full text-center text-yellow-900'>Corrupción</h1>
+                                                <div class='bg-yellow-100 p-3'>
+                                                    <p class='text-yellow-900'>La corrupción esta disminuyendo tu nivel de apoyo en 7%</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div x-show="openTab === 2">
+                                    <form action="">    
+                                    <div class='flex items-center'>
+                                        
+                                        <div class='w-3/5'>
+                                            <div class='flex justify-around'>
+                                                <div>
+                                                    Discusiones
+                                                    <input wire:model="civil" value='discusiones' id="discusiones" name="civil" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
+                                                </div>
+                                                    
+                                                <div>
+                                                    Servicios
+                                                    <input wire:model="civil" value='servicios' id="servicios" name="civil" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
+                                                </div>
+                                                <div>
+                                                    Infraestructura
+                                                    <input wire:model="civil" value='infraestructura' id="both" name="civil" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+                                                </div>
+                                            </div>   
+                                        </div>
+                                        <div class='w-1/5'>
+                                            <div class='p-2'>
+                                                <h1 class='w-full text-center text-yellow-900'>Desarrollo Discusiones</h1>
+                                                <div class='bg-yellow-100 p-3'>
+                                                    <p class='text-yellow-900 h-full'>
+                                                        Trabajas con la gente local para comprender sus requisitos economicos, 
+                                                        comerciales y laborales</p> 
+                                                    <button type='submit' class='bg-green-200'> Comprar</button>    
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>         
+                                    </form>
+                                </div>
+                                <div x-show="openTab === 3">
+                                    <form action="">    
+                                    <div class='flex items-center'>   
+                                        <div class='w-3/5'>
+                                            <div class='flex justify-around'>
+                                                <div>
+                                                    Discusiones
+                                                    <input wire:model="gobierno" value='discusiones' id="discusiones" name="gobierno" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
+                                                </div>
+                                                    
+                                                <div>
+                                                    Representativos
+                                                    <input wire:model="gobierno" value='representativos' id="servicios" name="gobierno" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
+                                                </div>
+                                                <div>
+                                                    Milicia
+                                                    <input wire:model="gobierno" value='milicia' id="both" name="gobierno" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+                                                </div>
+                                            </div>   
+                                        </div>
+                                        <div class='w-1/5'>
+                                            <div class='p-2'>
+                                                <h1 class='w-full text-center text-yellow-900'>Anticorrupcion 1</h1>
+                                                <div class='bg-yellow-100 p-3'>
+                                                    <p class='text-yellow-900 h-full'>
+                                                        Establece una linea directa basica y un sistema de informes de 
+                                                        sitios web para que las victimas de corrupcion
+                                                        puedan denunciar abusos de poder,
+                                                        como el soborno y el nepotismo</p> 
+                                                    <button type='submit' class='bg-green-200'> Comprar</button>    
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>         
+                                    </form>
+                                </div>
+                                <div x-show="openTab === 4">
+                                    <form action="">    
+                                    <div class='flex items-center'>
+                                        
+                                        <div class='w-3/5'>
+                                            <div class='flex justify-around'>
+                                                <div>
+                                                    Coalicion
+                                                    <input wire:model="militar" value='discusiones' id="discusiones" name="militar" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
+                                                </div>
+                                                           
+                                            </div>   
+                                        </div>
+                                        <div class='w-1/5'>
+                                            <div class='p-2'>
+                                                <h1 class='w-full text-center text-yellow-900'>Lanzar soldados de coalicion1</h1>
+                                                <div class='bg-yellow-100 p-3'>
+                                                    <p class='text-yellow-900 h-full'>
+                                                        Solicitar el despliegue tenporal de una unidad internacional con la coalicion,
+                                                        (Color azul)</p> 
+                                                    <button type='submit' class='bg-green-200'> Comprar</button>    
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>         
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class='flex justify-around'>
+                    <div class='p-6 flex justify-around'>
                         <div class='w-1/4'>
                             Dinero
                         </div>
