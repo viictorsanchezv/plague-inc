@@ -52,7 +52,7 @@
                             
                         
                             <div class="w-full pt-4">
-                                <div x-show="openTab === 1">
+                                <div x-show="openTab === 1" style='display:none;'>
                                     <div class='flex items-center'>
                                         <div class='w-3/5'>
                                             <img  src="{{ URL::asset('img/resumen.gif') }}" alt="this slowpoke moves" class='mx-auto' />
@@ -77,7 +77,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div x-show="openTab === 2">
+                                <div x-show="openTab === 2" style='display:none;'>
                                     
                                     <div class='flex items-center'>
                                         
@@ -102,7 +102,7 @@
                                     </div>         
                                     
                                 </div>
-                                <div x-show="openTab === 3">
+                                <div x-show="openTab === 3" style='display:none;'>
                                        
                                     <div class='flex items-center'>   
                                         <div class='w-3/5'>
@@ -128,7 +128,7 @@
                                     </div>         
                                    
                                 </div>
-                                <div x-show="openTab === 4">
+                                <div x-show="openTab === 4" style='display:none;'>
                                     
                                     <div class='flex items-center'>
                                         
@@ -172,7 +172,7 @@
             </div><!-- /overlay -->
         </div>
 
-
+        <!-- Regiones  -->
         <div x-data="reassignDialog()" @toggle-reassign-modal.window="reassignmodal = !reassignmodal" >
             <div class="overflow-auto" style="background-color: rgba(0, 0, 0, 0.75);display:none" x-show="isOpenReassign()" :class="{ 'reassign-history-modal': isOpenReassign() }" >
                 <!-- dialog -->
@@ -205,7 +205,7 @@
                                 </li>
                             </ul>
                             <div class="w-full pt-4">
-                                <div x-show="openTab === 1">
+                                <div x-show="openTab === 1" style='display:none;'>
                                     <div class='flex items-center'>
                                         <div class='w-full text-center'>
                                             Estabilidad 0% alcanzado
@@ -233,7 +233,7 @@
 
                                     </div>
                                 </div>
-                                <div x-show="openTab === 2">
+                                <div x-show="openTab === 2" style='display:none;'>
                                     <div class='flex w-full justify-around items-center'>
                                         <div class='w-3/5'>
                                             <h1>Logo</h1>
@@ -246,7 +246,7 @@
                                            
                                     </div>         
                                 </div>
-                                <div x-show="openTab === 3">
+                                <div x-show="openTab === 3" style='display:none;'>
                                     <div class='flex w-full justify-around items-center'>   
                                         <div class='w-1/2'>
                                             <h1>Evaluación de amenazas</h1>  
@@ -256,7 +256,7 @@
                                         </div>    
                                     </div>         
                                 </div>
-                                <div x-show="openTab === 4">
+                                <div x-show="openTab === 4" style='display:none;'>
                                        
                                     <div class='w-full text-center items-center'>   
                                         <h1>Consigue Premium</h1>  
@@ -275,7 +275,7 @@
     </div> 
 </div>
 <script>
-    function isDialogOpen() {
+function isDialogOpen() {
     return {
         modal: false,
         open() { this.modal = true;document.body.classList.add("modal-open"); },
