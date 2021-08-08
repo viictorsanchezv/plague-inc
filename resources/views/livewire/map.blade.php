@@ -4,13 +4,13 @@
         <div class='w-full flex'>
             <div class='bg-yellow-100 rounded-lg mt-2 w-7/12 mx-auto flex justify-around'>
                 <div class='bg-yelloy-300 text-xl text-black'>
-                    747
+                    {{ $poblacion_a_favor }}
                 </div>
                 <div class='bg-yelloy-300 text-xl text-black'>
-                    Estabilidad 2%
+                    Estabilidad {{ $estabilidad }} %
                 </div>
                 <div class='bg-yelloy-300 text-xl text-black'>
-                    23,258
+                    {{ $poblacion_neutral }}
                 </div>
             </div>
         </div>
@@ -303,6 +303,7 @@ function reassignDialog() {
     setInterval(() => {
         console.log("tick");
         Livewire.emit('postAdded');
-    }, 1000);
+        Livewire.emit('cal_poblacion');
+    }, 2000);
     //Livewire.emit('postAdded');
 </script>
