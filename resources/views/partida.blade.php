@@ -5,9 +5,9 @@
         </h2>
     </x-slot>
 
-    <div class="h-screen">
-        <div class="h-screen ">
-            <div class="h-screen bg-white overflow-hidden shadow-xl sm:rounded-lg">
+    <div >
+        <div>
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <livewire:map>
             </div>
         </div>

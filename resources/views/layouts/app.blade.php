@@ -41,6 +41,16 @@
 
         @stack('modals')
 
-        @livewireScripts
+       
+
+        <!-- <script>
+            setInterval(() => {
+                console.log("tick");
+                window.livewire.on('postAdded', postId => {
+                    alert('A post was added with the id of: ' + postId);
+                })
+            }, 1000);
+            //Livewire.emit('postAdded');
+        </script> -->
     </body>
 </html>
