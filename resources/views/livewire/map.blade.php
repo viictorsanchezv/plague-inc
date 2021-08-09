@@ -1,12 +1,11 @@
-
 <div x-data="isDialogOpen()" @toggle-modal.window="modal = !modal" class=' w-full' style="height: 93vh; background-image: url({{ URL::asset('img/map.png') }})">
     <div class='w-full' x-data="reassignDialog()" @toggle-reassign-modal.window="reassignmodal = !reassignmodal">
         <div class='w-full flex'>
-            <div class='bg-yellow-100 rounded-lg mt-2 w-7/12 mx-auto flex justify-around'>
+            <div class='bg-yellow-100 border-2 border-yellow-800 rounded-lg mt-2 w-7/12 mx-auto flex justify-around'>
                 <div class='bg-yelloy-300 text-xl text-black'>
                     {{ $poblacion_a_favor }}
                 </div>
-                <div class='bg-yelloy-300 text-xl text-black'>
+                <div class='bg-yelloy-500 text-xl text-black'>
                     Estabilidad {{ $estabilidad }} %
                 </div>
                 <div class='bg-yelloy-300 text-xl text-black'>
@@ -29,22 +28,22 @@
                         <div  x-data="{openTab: 1, activeClasses: 'border-l border-t border-r rounded-t text-blue-700',inactiveClasses: 'text-blue-500 hover:text-blue-800'}" class="p-6">
                             <ul class="flex border-b w-full justify-around">
                                 <li @click="openTab = 1" :class="{ '-mb-px': openTab === 1 }" class="-mb-px mr-1 w-1/4">
-                                    <a :class="openTab === 1 ? activeClasses : inactiveClasses" class="bg-white inline-block py-2 px-4 font-semibold " href="#">
+                                    <a :class="openTab === 1 ? activeClasses : inactiveClasses" class="text-black bg-white inline-block py-2 px-4 font-semibold " href="#">
                                         Resumen
                                     </a>
                                 </li>
                                 <li @click="openTab = 2" :class="{ '-mb-px': openTab === 2 }" class="mr-1 w-1/4">
-                                    <a :class="openTab === 2 ? activeClasses : inactiveClasses" class="bg-white inline-block py-2 px-4 font-semibold" href="#">
+                                    <a :class="openTab === 2 ? activeClasses : inactiveClasses" class="text-black bg-white inline-block py-2 px-4 font-semibold" href="#">
                                         Civil
                                     </a>
                                 </li>
                                 <li @click="openTab = 3" :class="{ '-mb-px': openTab === 3 }" class="mr-1 w-1/4">
-                                    <a :class="openTab === 3 ? activeClasses : inactiveClasses" class="bg-white inline-block py-2 px-4 font-semibold" href="#">
+                                    <a :class="openTab === 3 ? activeClasses : inactiveClasses" class="text-black bg-white inline-block py-2 px-4 font-semibold" href="#">
                                         Gobierno
                                     </a>
                                 </li>
                                 <li @click="openTab = 4" :class="{ '-mb-px': openTab === 4 }" class="mr-1 w-1/4">
-                                    <a :class="openTab === 4 ? activeClasses : inactiveClasses" class="bg-white inline-block py-2 px-4 font-semibold" href="#">
+                                    <a :class="openTab === 4 ? activeClasses : inactiveClasses" class="text-black bg-white inline-block py-2 px-4 font-semibold" href="#">
                                         Militar
                                     </a>
                                 </li>
@@ -64,14 +63,14 @@
                                                     <p class='text-yellow-900'>Mision: Estabiliza la región</p>
                                                     <p class='text-yellow-900'>Duración: 55 mes(s)</p>
                                                     <p class='text-yellow-900'>Gobernador: Sirviente Civil</p>
-                                                    <p class='text-yellow-900'>Presupuesto Anual: 30$</p>
-                                                    <p class='text-yellow-900'>Dificulta: Casual</p>
+                                                    <p class='text-yellow-900'>Presupuesto Anual: {{ $dinero }}</p>
+                                                    <p class='text-yellow-900'>Dificultad: Casual</p>
                                                 </div>
                                             </div>
                                             <div class='p-2'>
                                                 <h1 class='w-full text-center text-yellow-900'>Corrupción</h1>
                                                 <div class='bg-yellow-100 p-3'>
-                                                    <p class='text-yellow-900'>La corrupción esta disminuyendo tu nivel de apoyo en 7%</p>
+                                                    <p class='text-yellow-900'>La corrupción esta disminuyendo tu nivel de apoyo en {{ $corrupcion }}%</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -83,19 +82,18 @@
                                         
                                         <div class='w-3/5'>
                                             <div class='flex justify-around'>
-                                                <button wire:click="postAdded"> Discusiones {{$postCount}} </button>
-                                                <button wire:click="postAdded"> Servicios {{$postCount}} </button>
-                                                <button wire:click="postAdded"> Infraestructura {{$postCount}} </button>
+                                                <button class='bg-green-100 p-5 rounded-full shadow-md text-green-800' wire:click="operaciones('civil','desarrollo')"> Discusiones - Comprar </button>
+                                                <button class='bg-green-100 p-5 rounded-full shadow-md text-green-800' wire:click="operaciones('civil','necesidad')"> Servicios - Comprar </button>
+                                                <button class='bg-green-100 p-5 rounded-full shadow-md text-green-800' wire:click="operaciones('civil','infraestructura')"> Infraestructura - Comprar </button>
                                             </div>   
                                         </div>
                                         <div class='w-1/5'>
-                                            <div class='p-2'>
-                                                <h1 class='w-full text-center text-yellow-900'>Desarrollo Discusiones</h1>
-                                                <div class='bg-yellow-100 p-3'>
+                                            <div class='p-2 bg-yellow-100'>
+                                                <h1 class='w-full text-center text-yellow-900 font-bold'>{{ $titulo_operacion }}</h1>
+                                                <div class='p-3'>
                                                     <p class='text-yellow-900 h-full'>
-                                                        Trabajas con la gente local para comprender sus requisitos economicos, 
-                                                        comerciales y laborales</p> 
-                                                       
+                                                        {{ $descripcion_operacion }}</p> 
+                                                    <p class='bg-green-100 w-full shadow-md py-3 px-6 text-center my-3'>COMPRAR {{ $valor_operacion }} $</p>  
                                                 </div>
                                             </div>
                                         </div>    
@@ -107,21 +105,18 @@
                                     <div class='flex items-center'>   
                                         <div class='w-3/5'>
                                             <div class='flex justify-around'>  
-                                                <button wire:click="postAdded"> Corrupcion {{$postCount}} </button>
-                                                <button wire:click="postAdded"> Representativos {{$postCount}} </button> 
-                                                <button wire:click="postAdded"> Milicia {{$postCount}} </button>
+                                                <button class='bg-green-100 p-5 rounded-full shadow-md text-green-800' wire:click="operaciones('gobierno','corrupcion')"> Corrupcion - Comprar </button>
+                                                <button class='bg-green-100 p-5 rounded-full shadow-md text-green-800' wire:click="operaciones('gobierno','milicia')"> Milicia - Comprar </button> 
+                                                <button class='bg-green-100 p-5 rounded-full shadow-md text-green-800' wire:click="operaciones('gobierno','distritos')"> Distritos - Comprar </button>
                                             </div>   
                                         </div>
                                         <div class='w-1/5'>
-                                            <div class='p-2'>
-                                                <h1 class='w-full text-center text-yellow-900'>Anticorrupcion 1</h1>
-                                                <div class='bg-yellow-100 p-3'>
+                                            <div class='p-2 bg-yellow-100'>
+                                                <h1 class='w-full text-center text-yellow-900 font-bold'>{{ $titulo_operacion }}</h1>
+                                                <div class=' p-3'>
                                                     <p class='text-yellow-900 h-full'>
-                                                        Establece una linea directa basica y un sistema de informes de 
-                                                        sitios web para que las victimas de corrupcion
-                                                        puedan denunciar abusos de poder,
-                                                        como el soborno y el nepotismo</p> 
-                                                    
+                                                        {{ $descripcion_operacion }}</p> 
+                                                    <p class='py-3 px-6 bg-green-100 shadow-md w-full my-3'>COMPRAR {{ $valor_operacion }} $</p>  
                                                 </div>
                                             </div>
                                         </div>    
@@ -134,16 +129,16 @@
                                         
                                         <div class='w-3/5'>
                                             <div class='flex justify-around'>
-                                                <button wire:click="postAdded"> Coalicion {{$postCount}} </button>        
+                                                <button <?php echo ($ataque == true)? '' : 'disabled' ;?> class=" <?php echo ($ataque == true)? '' : 'disabled:opacity-50' ;?> bg-green-100 p-5 rounded-full shadow-md text-green-800" wire:click="operaciones('militar','coalicion')"> Coalicion - Comprar </button>        
                                             </div>   
                                         </div>
                                         <div class='w-1/5'>
-                                            <div class='p-2'>
-                                                <h1 class='w-full text-center text-yellow-900'>Lanzar soldados de coalicion1</h1>
-                                                <div class='bg-yellow-100 p-3'>
+                                            <div class='p-2 bg-yellow-100'>
+                                                <h1 class='w-full text-center text-yellow-900 font-bold'>{{ $titulo_operacion }}</h1>
+                                                <div class=' p-3'>
                                                     <p class='text-yellow-900 h-full'>
-                                                        Solicitar el despliegue tenporal de una unidad internacional con la coalicion,
-                                                        (Color azul)</p> 
+                                                        {{ $descripcion_operacion }}</p>
+                                                    <p class='py-3 px-6 bg-green-100 shadow-md w-full my-3'>COMPRAR {{ $valor_operacion }} $</p> 
                                                 </div>
                                             </div>
                                         </div>    
@@ -156,16 +151,16 @@
                     </div>
                     <div class='p-6 flex justify-around'>
                         <div class='w-1/4'>
-                            Dinero {{ $postCount }}
+                            Dinero {{ $dinero }}
                         </div>
                         <div class='w-1/4'>
-                            Nivel de apoyo %
+                            Nivel de apoyo {{ $nivel_apoyo }} %
                         </div>
                         <div class='w-1/4'>
-                            Inflacion %
+                            Inflacion {{ $inflacion}} %
                         </div>
                         <div class='w-1/4'>
-                            Riesgo de corrupcion
+                            Riesgo de corrupcion {{ $corrupcion }} %
                         </div>
                     </div>
                 </div><!-- /dialog -->
@@ -185,7 +180,7 @@
                             <ul class="flex border-b w-full justify-around">
                                 <li @click="openTab = 1" :class="{ '-mb-px': openTab === 1 }" class="-mb-px mr-1 w-1/4">
                                     <a :class="openTab === 1 ? activeClasses : inactiveClasses" class="bg-white inline-block py-2 px-4 font-semibold " href="#">
-                                        Estabilidad
+                                        Estabilidad 
                                     </a>
                                 </li>
                                 <li @click="openTab = 2" :class="{ '-mb-px': openTab === 2 }" class="mr-1 w-1/4">
@@ -208,7 +203,7 @@
                                 <div x-show="openTab === 1" style='display:none;'>
                                     <div class='flex items-center'>
                                         <div class='w-full text-center'>
-                                            Estabilidad 0% alcanzado
+                                            Estabilidad {{ $estabilidad }}% alcanzado
                                         </div>
                                     </div>    
                                     <div class='flex w-full justify-around items-center'>
@@ -269,11 +264,16 @@
                 </div><!-- /dialog -->
             </div><!-- /overlay -->
         </div>
+        
+        <livewire:insurgente>
+              
 
-        <button x-data @click="$dispatch('toggle-modal')" class='absolute bottom-0 left-0 w-5/8 bg-yellow-100 rounded-lg'>Operaciones</button>
-        <button x-data @click="$dispatch('toggle-reassign-modal')" class='absolute bottom-0 right-0 w-5/8 bg-yellow-100 rounded-lg'>Region</button>
+        <button x-data @click="$dispatch('toggle-modal')" class='text-xl font-bold border-2 border-yellow-800 absolute bottom-0 left-0 w-5/8 bg-yellow-100 rounded-lg h-14 w-1/4 text-green-400'>Operaciones</button>
+        <button x-data @click="$dispatch('toggle-reassign-modal')" class='text-xl font-bold border-2 border-yellow-800 absolute bottom-0 right-0 w-5/8 bg-yellow-100 rounded-lg h-14 w-1/4 text-yellow-400'>Region</button>
     </div> 
 </div>
+
+    
 <script>
 function isDialogOpen() {
     return {
@@ -302,8 +302,10 @@ function reassignDialog() {
 <script>
     setInterval(() => {
         console.log("tick");
-        Livewire.emit('postAdded');
+        Livewire.emit('poblacion');
         Livewire.emit('cal_poblacion');
     }, 2000);
-    //Livewire.emit('postAdded');
+
+   
 </script>
+

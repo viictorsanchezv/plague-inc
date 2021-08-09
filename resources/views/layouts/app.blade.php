@@ -17,7 +17,13 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-         
+
+        <!-- Particle -->
+        <script src="{{ URL::asset('js/particles.js') }}" ></script>
+        <script src="{{ URL::asset('js/particles.min.js') }}" ></script>
+        <!-- Stats JS  -->
+        <script src="{{ URL::asset('js/stats.js') }}" ></script>
+        
         <!-- Alpine.js -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
