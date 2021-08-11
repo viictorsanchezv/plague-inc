@@ -28,10 +28,9 @@
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased" >
         <x-jet-banner />
-
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
@@ -46,17 +45,5 @@
         </div>
 
         @stack('modals')
-
-       
-
-        <!-- <script>
-            setInterval(() => {
-                console.log("tick");
-                window.livewire.on('postAdded', postId => {
-                    alert('A post was added with the id of: ' + postId);
-                })
-            }, 1000);
-            //Livewire.emit('postAdded');
-        </script> -->
     </body>
 </html>
