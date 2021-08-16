@@ -20,6 +20,8 @@ class Map extends Component
                             'dynamic_events'    => 'dynamic_events'];                      
     public $titulo_operacion, $descripcion_operacion, $valor_operacion=0;
     public $bandera_evento_informativo = true;
+    
+    // arreglo de eventos de operaciones
     public $operaciones = array(
         'civil'     => array(
             'desarrollo'         => [
@@ -64,6 +66,7 @@ class Map extends Component
         ),
     );
 
+    // eventos informacion 
     public $events = array(
             '0' =>array(
                 'title' => 'Si tienes suficientes Apoyos en una zona (Y no hay Insurgentes presentes), la zona se vuelve ESTABLE ',
@@ -198,8 +201,16 @@ class Map extends Component
     }
 
     public function cal_dinero(){
-        if($this->reputacion > 20){
+        if($this->poblacion_a_favor > 9000 && $this->poblacion_a_favor < 10000  ){
             $this->dinero+=3;
+        }else{
+            if($this->poblacion_a_favor > 10000 && $this->poblacion_a_favor < 15000 ){
+                $this->dinero+=10;
+            }else{
+                if($this->poblacion_a_favor > 15000 && $this->poblacion_a_favor < 20000 ){
+                    $this->dinero+=13;
+                }
+            }
         }
     }
 

@@ -131,7 +131,7 @@
                                         
                                         <div class='w-3/5'>
                                             <div class='flex justify-around'>
-                                                <button <?php echo ($ataque == true)? '' : 'disabled' ;?> class=" <?php echo ($ataque == true)? '' : 'disabled:opacity-50' ;?> bg-green-700 text-white p-5 rounded-full shadow-md" wire:click="operaciones('militar','coalicion')"> Coalicion - Comprar </button>        
+                                                <button class=" bg-green-700 text-white p-5 rounded-full shadow-md" wire:click="operaciones('militar','coalicion')"> Coalicion - Comprar </button>        
                                             </div>   
                                         </div>
                                         <div class='w-1/5'>
@@ -362,7 +362,7 @@ function reassignDialog() {
         console.log("nuevo evento random");
         Livewire.emit('dynamic_events');
         openModal(true)
-    }, 10000);
+    }, 30000);
    
 
     const modal_overlay = document.querySelector('#modal_overlay');
